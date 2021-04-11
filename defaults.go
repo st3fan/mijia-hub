@@ -1,3 +1,3 @@
 package main
 
-const defaultStateDirectory = "/var/lib"
+const defaultStateDirectory = "/var/lib/mijia-hub"

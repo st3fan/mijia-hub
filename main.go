@@ -36,14 +36,17 @@ func createDirectory(path string) error {
 	if _, err := os.Stat(path); os.IsNotExist(err) {
 		return os.Mkdir(path, os.ModeDir|0755)
 	}
+	return nil
 }
 
 func main() {
+	log.Printf("Creating directory <%s>", defaultStateDirectory)
 	if err := createDirectory(defaultStateDirectory); err != nil {
 		log.Fatalf("Could not create <%s>: %s", defaultStateDirectory, err)
 	}
 
 	storageDirectory := path.Join(path.Join(defaultStateDirectory, "storage"))
+	log.Printf("Creating directory <%s>", storageDirectory)
 	if err := createDirectory(storageDirectory); err != nil {
 		log.Fatalf("Could not create <%s>: %s", storageDirectory, err)
 	}

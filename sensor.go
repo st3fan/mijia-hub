@@ -41,7 +41,7 @@ func NewSensor(address string, data SensorData) (*Sensor, error) {
 	sensor.battery.BatteryLevel.SetValue(data.BatteryLevel)
 	sensor.Accessory.AddService(sensor.battery.Service)
 
-	storageRoot := path.Join(path.Join(defaultStateDirectory, "storage")
+	storageRoot := path.Join(defaultStateDirectory, "storage")
 
 	config := hc.Config{
 		StoragePath: path.Join(storageRoot, info.Name),
