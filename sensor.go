@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"path"
 	"strings"
 
 	"github.com/brutella/hc"
@@ -40,7 +41,13 @@ func NewSensor(address string, data SensorData) (*Sensor, error) {
 	sensor.battery.BatteryLevel.SetValue(data.BatteryLevel)
 	sensor.Accessory.AddService(sensor.battery.Service)
 
-	config := hc.Config{Pin: "11223344"}
+	storageRoot := path.Join(path.Join(defaultStateDirectory, "storage")
+
+	config := hc.Config{
+		StoragePath: path.Join(storageRoot, info.Name),
+		Pin:         "11223344",
+	}
+
 	transport, err := hc.NewIPTransport(config, sensor.Accessory)
 	if err != nil {
 		return nil, err

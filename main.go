@@ -2,6 +2,8 @@ package main
 
 import (
 	"log"
+	"os"
+	"path"
 )
 
 var sensors map[string]*Sensor = map[string]*Sensor{}
@@ -30,7 +32,22 @@ func RemoveSensor(address string) {
 	// TODO
 }
 
+func createDirectory(path string) error {
+	if _, err := os.Stat(path); os.IsNotExist(err) {
+		return os.Mkdir(path, os.ModeDir|0755)
+	}
+}
+
 func main() {
+	if err := createDirectory(defaultStateDirectory); err != nil {
+		log.Fatalf("Could not create <%s>: %s", defaultStateDirectory, err)
+	}
+
+	storageDirectory := path.Join(path.Join(defaultStateDirectory, "storage"))
+	if err := createDirectory(storageDirectory); err != nil {
+		log.Fatalf("Could not create <%s>: %s", storageDirectory, err)
+	}
+
 	// hc.OnTermination(func() {
 	// 	log.Println("hc.OnTermination")
 	// 	for address, sensor := range sensors {
