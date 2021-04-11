@@ -45,7 +45,7 @@ func NewSensor(address string, data SensorData) (*Sensor, error) {
 
 	config := hc.Config{
 		StoragePath: path.Join(storageRoot, info.Name),
-		Pin:         "11223344",
+		Pin:         defaultPin,
 	}
 
 	transport, err := hc.NewIPTransport(config, sensor.Accessory)
