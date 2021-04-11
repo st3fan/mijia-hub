@@ -7,6 +7,7 @@ import (
 
 	"github.com/brutella/hc"
 	"github.com/brutella/hc/accessory"
+	"github.com/brutella/hc/characteristic"
 	"github.com/brutella/hc/service"
 )
 
@@ -39,6 +40,7 @@ func NewSensor(address string, data SensorData) (*Sensor, error) {
 
 	sensor.battery = service.NewBatteryService()
 	sensor.battery.BatteryLevel.SetValue(data.BatteryLevel)
+	sensor.battery.ChargingState.SetValue(characteristic.ChargingStateNotChargeable)
 	sensor.Accessory.AddService(sensor.battery.Service)
 
 	storageRoot := path.Join(defaultStateDirectory, "storage")
