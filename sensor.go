@@ -21,7 +21,7 @@ type Sensor struct {
 func NewSensor(address string, data SensorData) (*Sensor, error) {
 	info := accessory.Info{
 		Name:         strings.ToUpper(fmt.Sprintf("ATC_%s%s%s", address[9:11], address[12:14], address[15:17])),
-		Manufacturer: "Mija",
+		Manufacturer: "Mijia",
 		SerialNumber: address,
 		Model:        "LYWSD03MMC",
 	}
