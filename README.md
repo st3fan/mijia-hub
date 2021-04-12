@@ -46,4 +46,4 @@ Once the `mijia-hub` is running on your device, it will listen on Bluetooth LE f
 
 The following two screenshots are from the [Home+](https://hochgatterer.me/home/) application, which is an excellent replacement for Apple's _Home.app_.
 
-![Temperature](temperature.png)  ![Favorites](favorites.png)
+![Temperature](temperature.png) ![Humidity](humidity.png) ![Favorites](favorites.png)
