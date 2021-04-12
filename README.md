@@ -43,3 +43,7 @@ That is all you need on the sensor side.
 # Operation
 
 Once the `mijia-hub` is running on your device, it will listen on Bluetooth LE for sensors to advertise the temperature. Right now any sensor in range will be added, so if your neighbours are using these sensors with the same custom firmware, you'll be able to see those too. I don't have anyone else in range, so I did not care about adding an allow-list to the `mijia-hub` configuration - but if this is important to you, please file an issue.
+
+The following two screenshots are from the [Home+](https://hochgatterer.me/home/) application, which is an excellent replacement for Apple's _Home.app_.
+
+![Temperature](temperature.png)  ![Favorites](favorites.png)
