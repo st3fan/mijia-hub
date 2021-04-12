@@ -3,6 +3,9 @@ _Stefan Arentz, April 2021_
 
 > Work in progress - this works for me but it can be a bit rough around the edges.
 
+![iPhone, Pi Zero and Mijia Sensor](devices.jpg)
+
+
 This is a small program that you can run on a device like a Raspberry Pi Zero that will make the LYWSD03MMC Temperature/Humidity sensors with custom firmware available on your local network as HomeKit accessories.
 
 The LYWSD03MMC Temperature/Humidity sensors are pretty cheap. If you don't mind longer shipping times, you can usually get them pretty cheap. (Right now [Gearbest](https://www.gearbest.com/thermometers/pp_3007525396195461.html?wid=2000001&lkid=80900118) has a deal for 4 sensors for $15 USD, which is a steal.)
