@@ -1,0 +1,28 @@
+# nfpm example config file
+#
+# check https://nfpm.goreleaser.com/configuration for detailed usage
+#
+name: "mijia-hub"
+arch: "armhf"
+platform: "linux"
+version: "v0.1.0"
+section: "default"
+priority: "extra"
+maintainer: "Stefan Arentz <stefan@arentz.ca>"
+description: Publish LYWSD03MMC devices as HomeKit accessories.
+homepage: "https://github.com/st3fan/mijia-hub"
+license: "MPL"
+contents:
+  - src: ./mijia-hub
+    dst: /usr/sbin/mijia-hub
+  - src: ./package/systemd/mijia-hub.service
+    dst: /etc/systemd/system/mijia-hub.service
+empty_folders:
+  - /var/lib/mijia-hub
+  - /var/lib/mijia-hub/storage
+overrides:
+  deb:
+    scripts:
+      postinstall: ./package/debian/postinstall.sh
+      preremove: ./package/debian/preremove.sh
+

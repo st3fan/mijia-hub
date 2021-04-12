@@ -2,4 +2,5 @@
 
 set -x
 
-env GOOS=linux GOARCH=arm GOARM=5 go build
+env GOOS=linux GOARCH=arm GOARM=5 go build && nfpm pkg --packager deb
+

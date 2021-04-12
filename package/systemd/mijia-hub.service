@@ -1,0 +1,12 @@
+[Unit]
+Description=mijia-hub
+Requires=hciuart.service
+After=network.target hciuart.service
+
+[Service]
+Type=simple
+ExecStart=/usr/sbin/mijia-hub
+WorkingDirectory=/var/lib/mijia-hub
+
+[Install]
+WantedBy=multi-user.target
