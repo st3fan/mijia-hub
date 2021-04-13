@@ -1,0 +1,4 @@
+# Pin used to pair devices. The same pin is used for all
+# devices. Must be 8 digits.
+
+PIN="12233445"

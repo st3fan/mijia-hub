@@ -1,6 +1,7 @@
 package main
 
 import (
+	"flag"
 	"log"
 	"os"
 	"path"
@@ -8,9 +9,9 @@ import (
 
 var sensors map[string]*Sensor = map[string]*Sensor{}
 
-func AddSensor(address string, data SensorData) {
+func AddSensor(address string, data SensorData, pin string) {
 	if _, found := sensors[address]; !found {
-		sensor, err := NewSensor(address, data)
+		sensor, err := NewSensor(address, data, pin)
 		if err != nil {
 			log.Printf("Could not create sensor <%s>: %s", address, err)
 			return
@@ -40,6 +41,9 @@ func createDirectory(path string) error {
 }
 
 func main() {
+	pin := flag.String("pin", defaultPin, "pin used to pair new sensors")
+	flag.Parse()
+
 	log.Printf("Creating directory <%s>", defaultStateDirectory)
 	if err := createDirectory(defaultStateDirectory); err != nil {
 		log.Fatalf("Could not create <%s>: %s", defaultStateDirectory, err)
@@ -78,7 +82,7 @@ func main() {
 		switch event.(type) {
 		case EventDiscoveredSensor:
 			log.Println("EventDiscoveredSensor")
-			AddSensor(event.(EventDiscoveredSensor).Address, event.(EventDiscoveredSensor).Data)
+			AddSensor(event.(EventDiscoveredSensor).Address, event.(EventDiscoveredSensor).Data, *pin)
 		case EventReceivedSensorData:
 			log.Println("EventReceivedSensorData")
 			UpdateSensor(event.(EventReceivedSensorData).Address, event.(EventReceivedSensorData).Data)

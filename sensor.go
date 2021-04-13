@@ -19,7 +19,7 @@ type Sensor struct {
 	transport   hc.Transport
 }
 
-func NewSensor(address string, data SensorData) (*Sensor, error) {
+func NewSensor(address string, data SensorData, pin string) (*Sensor, error) {
 	info := accessory.Info{
 		Name:         strings.ToUpper(fmt.Sprintf("ATC_%s%s%s", address[9:11], address[12:14], address[15:17])),
 		Manufacturer: "Mijia",
@@ -47,7 +47,7 @@ func NewSensor(address string, data SensorData) (*Sensor, error) {
 
 	config := hc.Config{
 		StoragePath: path.Join(storageRoot, info.Name),
-		Pin:         defaultPin,
+		Pin:         pin,
 	}
 
 	transport, err := hc.NewIPTransport(config, sensor.Accessory)

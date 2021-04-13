@@ -5,7 +5,7 @@
 name: "mijia-hub"
 arch: "armhf"
 platform: "linux"
-version: "v0.1.0"
+version: "v0.2.0"
 section: "default"
 priority: "extra"
 maintainer: "Stefan Arentz <stefan@arentz.ca>"
@@ -17,6 +17,8 @@ contents:
     dst: /usr/sbin/mijia-hub
   - src: ./package/systemd/mijia-hub.service
     dst: /etc/systemd/system/mijia-hub.service
+  - src: ./package/default/mijia-hub
+    dst: /etc/default/mijia-hub
 empty_folders:
   - /var/lib/mijia-hub
   - /var/lib/mijia-hub/storage
