@@ -16,11 +16,20 @@ The current release is [v0.1.0](https://github.com/st3fan/mijia-hub/releases/tag
 The easiest way to get going with this is to download the attached .deb file and install it on a Raspberry Pi Zero W. If you have a device that is a different architecture, please file a bug and I will update the build scripts to generate the proper packages.
 
 ```
-$ wget https://github.com/st3fan/mijia-hub/releases/download/v0.1.0/mijia-hub_0.1.0_armhf.deb
+$ wget https://github.com/st3fan/mijia-hub/releases/download/v0.2.0/mijia-hub_0.2.0_armhf.deb
 $ sudo dpkg --install mijia-hub_0.1.0_armhf.deb
 ```
 
-You will have to manually start it with:
+The default PIN for new devices is `122334455`. You can change this in `/etc/default/mijia-hub`:
+
+```
+# Pin used to pair devices. The same pin is used for all
+# devices. Must be 8 digits.
+
+PIN="12233445"
+```
+
+Finally, start the `mijja-hub` daemon with:
 
 ```
 $ sudo systemctl start mijia-hub
