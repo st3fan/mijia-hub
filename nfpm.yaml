@@ -3,7 +3,7 @@
 # check https://nfpm.goreleaser.com/configuration for detailed usage
 #
 name: "mijia-hub"
-arch: "armhf"
+arch: ${NFPM_ARCH}
 platform: "linux"
 version: "v0.2.0"
 section: "default"
