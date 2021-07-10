@@ -41,6 +41,10 @@ func createDirectory(path string) error {
 }
 
 func main() {
+	if os.Getenv("INVOCATION_ID") != "" {
+		log.SetFlags(0)
+	}
+
 	pin := flag.String("pin", defaultPin, "pin used to pair new sensors")
 	flag.Parse()
 
