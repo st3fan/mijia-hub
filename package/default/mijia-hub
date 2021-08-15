@@ -1,4 +1,12 @@
-# Pin used to pair devices. The same pin is used for all
-# devices. Must be 8 digits.
+# The pincode used to pair devices. The same pin is used for all
+# sensors that register with the hub. Must be 8 digits.
 
 PIN="12233445"
+
+# InfluxDB Settings. Data is only pushed to InfluxDB is all these
+# variables are configured.
+
+INFLUXDB_SERVER=""
+INFLUXDB_TOKEN=""
+INFLUXDB_BUCKET=""
+INFLUXDB_ORG=""
