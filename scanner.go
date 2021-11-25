@@ -75,7 +75,7 @@ func (s *Scanner) handler(a ble.Advertisement) bool {
 
 	if strings.HasPrefix(a.Address().String(), "a4:c1:38") && len(a.ServiceData()) == 1 {
 		if sensorData, err := ParseSensorData(a.ServiceData()[0].Data); err == nil {
-			//log.Printf("%s %+v", a.Address(), sensorData)
+			// log.Printf("%s %+v", a.Address(), sensorData)
 			if sd, ok := s.sensors[a.Address().String()]; !ok {
 				s.sensors[a.Address().String()] = sensorData
 				s.Notify(EventDiscoveredSensor{

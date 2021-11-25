@@ -6,7 +6,7 @@ After=network.target hciuart.service
 [Service]
 EnvironmentFile=/etc/default/mijia-hub
 Type=simple
-ExecStart=/usr/sbin/mijia-hub -pin $PIN
+ExecStart=/usr/sbin/mijia-hub
 WorkingDirectory=/var/lib/mijia-hub
 
 [Install]
