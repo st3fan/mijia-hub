@@ -11,7 +11,7 @@ For this to work you need to flash the LYWSD03MMC sensors with the custom firmwa
 
 # Installing
 
-The current release is [v0.1.0](https://github.com/st3fan/mijia-hub/releases/tag/v0.1.0).
+The current release is [v0.3.0](https://github.com/st3fan/mijia-hub/releases/tag/v0.3.0).
 
 The easiest way to get going with this is to download the attached .deb file and install it on a Raspberry Pi Zero W. If you have a device that is a different architecture, please file a bug and I will update the build scripts to generate the proper packages.
 
