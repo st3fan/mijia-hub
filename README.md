@@ -11,13 +11,13 @@ For this to work you need to flash the LYWSD03MMC sensors with the custom firmwa
 
 # Installing
 
-The current release is [v0.3.0](https://github.com/st3fan/mijia-hub/releases/tag/v0.3.0).
+The current release is [v0.4.0](https://github.com/st3fan/mijia-hub/releases/tag/v0.4.0).
 
 The easiest way to get going with this is to download the attached .deb file and install it on a Raspberry Pi Zero W. If you have a device that is a different architecture, please file a bug and I will update the build scripts to generate the proper packages.
 
 ```
-$ wget https://github.com/st3fan/mijia-hub/releases/download/v0.3.0/mijia-hub_0.3.0_armhf.deb
-$ sudo dpkg --install mijia-hub_0.3.0_armhf.deb
+$ wget https://github.com/st3fan/mijia-hub/releases/download/v0.4.0/mijia-hub_0.4.0_armhf.deb
+$ sudo dpkg --install mijia-hub_0.4.0_armhf.deb
 ```
 
 The default PIN for new devices is `122334455`. You can change this in `/etc/default/mijia-hub`:
