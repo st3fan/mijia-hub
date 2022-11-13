@@ -67,10 +67,19 @@ func (app *application) run() error {
 	for event := range subscription.Events() {
 		switch event.(type) {
 		case EventDiscoveredSensor:
+			if app.cfg.Verbose {
+				log.Printf("Received EventDiscoveredSensor: %+v", event)
+			}
 			app.addSensor(event.(EventDiscoveredSensor).Address, event.(EventDiscoveredSensor).Data)
 		case EventReceivedSensorData:
+			if app.cfg.Verbose {
+				log.Printf("Received EventDiscoveredSensorData: %+v", event)
+			}
 			app.updateSensor(event.(EventReceivedSensorData).Address, event.(EventReceivedSensorData).Data)
 		case EventExpiredSensor:
+			if app.cfg.Verbose {
+				log.Printf("Received EventExpiredSensor: %+v", event)
+			}
 			app.removeSensor(event.(EventExpiredSensor).Address)
 		}
 	}

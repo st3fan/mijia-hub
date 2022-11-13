@@ -5,7 +5,7 @@
 name: "mijia-hub"
 arch: ${NFPM_ARCH}
 platform: "linux"
-version: "v0.2.0"
+version: "v0.3.0"
 section: "default"
 priority: "extra"
 maintainer: "Stefan Arentz <stefan@arentz.ca>"
@@ -19,9 +19,10 @@ contents:
     dst: /etc/systemd/system/mijia-hub.service
   - src: ./package/default/mijia-hub
     dst: /etc/default/mijia-hub
-empty_folders:
-  - /var/lib/mijia-hub
-  - /var/lib/mijia-hub/storage
+  - type: dir
+    dst: /var/lib/mijia-hub
+  - type: dir
+    dst: /var/lib/mijia-hub/storage
 overrides:
   deb:
     scripts:

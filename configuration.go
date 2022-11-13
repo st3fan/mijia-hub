@@ -11,6 +11,7 @@ type configuration struct {
 	InfluxDBToken  string `envconfig:"INFLUXDB_TOKEN"`
 	InfluxDBBucket string `envconfig:"INFLUXDB_BUCKET"`
 	InfluxDBOrg    string `envconfig:"INFLUXDB_ORG"`
+	Verbose        bool   `envconfig:"VERBOSE"`
 }
 
 func newConfigurationFromEnvironment() (configuration, error) {
