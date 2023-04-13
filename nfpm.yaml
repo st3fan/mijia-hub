@@ -5,7 +5,7 @@
 name: "mijia-hub"
 arch: ${NFPM_ARCH}
 platform: "linux"
-version: "v0.4.0"
+version: "v0.5.0"
 section: "default"
 priority: "extra"
 maintainer: "Stefan Arentz <stefan@arentz.ca>"
