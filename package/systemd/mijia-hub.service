@@ -8,6 +8,7 @@ EnvironmentFile=/etc/default/mijia-hub
 Type=simple
 ExecStart=/usr/sbin/mijia-hub
 WorkingDirectory=/var/lib/mijia-hub
+Restart=on-failure
 
 [Install]
 WantedBy=multi-user.target
