@@ -5,18 +5,17 @@ import (
 	"path"
 	"strings"
 
-	"github.com/brutella/hc"
-	"github.com/brutella/hc/accessory"
-	"github.com/brutella/hc/characteristic"
-	"github.com/brutella/hc/service"
+	"github.com/brutella/hap"
+	"github.com/brutella/hap/accessory"
+	"github.com/brutella/hap/characteristic"
+	"github.com/brutella/hap/service"
 )
 
 type Sensor struct {
-	*accessory.Accessory
-	temperature *service.TemperatureSensor
-	humidity    *service.HumiditySensor
-	battery     *service.BatteryService
-	transport   hc.Transport
+	accessory *accessory.A
+	temperature service.TemperatureSensor
+	humidity    service.HumiditySensor
+	battery     service.BatteryService
 }
 
 func NewSensor(address string, data SensorData, pin string) (*Sensor, error) {
@@ -28,47 +27,47 @@ func NewSensor(address string, data SensorData, pin string) (*Sensor, error) {
 	}
 
 	sensor := &Sensor{}
-	sensor.Accessory = accessory.New(info, accessory.TypeSensor)
-
-	sensor.temperature = service.NewTemperatureSensor()
-	sensor.temperature.CurrentTemperature.SetValue(data.Temperature)
-	sensor.Accessory.AddService(sensor.temperature.Service)
-
-	sensor.humidity = service.NewHumiditySensor()
-	sensor.humidity.CurrentRelativeHumidity.SetValue(float64(data.Humidity))
-	sensor.Accessory.AddService(sensor.humidity.Service)
-
-	sensor.battery = service.NewBatteryService()
-	sensor.battery.BatteryLevel.SetValue(data.BatteryLevel)
-	sensor.battery.ChargingState.SetValue(characteristic.ChargingStateNotChargeable)
-	sensor.Accessory.AddService(sensor.battery.Service)
+	sensor.accessory = accessory.New(info, accessory.TypeSensor)
+  // define temperature
+  sensor.temperature.S = service.New(service.TypeTemperatureSensor)
+  sensor.temperature.CurrentTemperature = characteristic.NewCurrentTemperature()
+	sensor.temperature.AddC(sensor.temperature.CurrentTemperature.C)
+  // add temperature service
+  sensor.accessory.AddS(sensor.temperature.S)
+  // set current temperature
+  sensor.temperature.CurrentTemperature.SetValue(data.Temperature)
+  // define humidity 
+  sensor.humidity.S = service.New(service.TypeHumiditySensor)
+  sensor.humidity.CurrentRelativeHumidity = characteristic.NewCurrentRelativeHumidity()
+  sensor.humidity.AddC(sensor.humidity.CurrentRelativeHumidity.C)
+  // add humidity service
+  sensor.accessory.AddS(sensor.humidity.S)
+  // set current humidity
+  sensor.humidity.CurrentRelativeHumidity.SetValue(data.Humidity)
+  // define battery
+  sensor.battery.S = service.New(service.TypeBatteryService)
+  sensor.battery.BatteryLevel = characteristic.NewBatteryLevel()
+	sensor.battery.AddC(sensor.battery.BatteryLevel.C)
+  // add battery service
+  sensor.accessory.AddS(sensor.battery.S)
+  // set current battery
+  sensor.battery.BatteryLevel.SetValue(data.BatteryLevel)
 
 	storageRoot := path.Join(defaultStateDirectory, "storage")
 
-	config := hc.Config{
-		StoragePath: path.Join(storageRoot, info.Name),
-		Pin:         pin,
-	}
+	fs := hap.NewFsStore(storageRoot)
 
-	transport, err := hc.NewIPTransport(config, sensor.Accessory)
+  server, err := hap.NewServer(fs, sensor.accessory)
 	if err != nil {
-		return nil, err
+    return nil, err
 	}
-
-	go transport.Start()
-
+  server.Pin = pin
 	return sensor, nil
 }
 
 func (s *Sensor) Update(data SensorData) error {
-	if s.temperature.CurrentTemperature.GetValue() != data.Temperature {
 		s.temperature.CurrentTemperature.SetValue(data.Temperature)
-	}
-	if s.humidity.CurrentRelativeHumidity.GetValue() != data.Humidity {
 		s.humidity.CurrentRelativeHumidity.SetValue(data.Humidity)
-	}
-	if s.battery.BatteryLevel.GetValue() != data.BatteryLevel {
 		s.battery.BatteryLevel.SetValue(data.BatteryLevel)
-	}
 	return nil
 }
