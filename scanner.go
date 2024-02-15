@@ -8,8 +8,8 @@ import (
 	"sync"
 	"time"
 
-	"github.com/currantlabs/ble"
-	"github.com/currantlabs/ble/examples/lib/dev"
+	"github.com/go-ble/ble"
+	"github.com/go-ble/ble/examples/lib/dev"
 )
 
 type SensorData struct {
